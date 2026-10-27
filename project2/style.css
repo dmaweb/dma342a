@@ -1,7 +1,9 @@
 :root {
 	--color-dark: #222435;
 	--color-light: #f3eddb;
+	--color-light2: #efdede;
 	--color-brand: #fd48d9;
+	--color-light-blue: #d0d3f1;
 	--grid-size: 16px;
 }
 
@@ -26,15 +28,34 @@ body {
 }
 
 header {
-	background-color: var(--color-dark);
+	background-color: var(--color-brand);
 	display: flex;
 	align-items: center;
 	padding: var(--grid-size);
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+header nav {
+	display: flex;
+	gap: 1rem;
+}
+nav a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 200;
+}
+
+nav a:hover,
+nav a.current {
+	text-decoration: underline;
 }
 
 main {
 	flex: 1;
-	padding: var(--grid-size);
+	display: flex;
+	flex-direction: column;
 }
 
 h1,
@@ -50,7 +71,12 @@ h6 {
 footer {
 	padding: var(--grid-size);
 	color: var(--color-light);
-	background-color: var(--color-dark);
+	background-color: var(--color-light-blue);
+}
+
+footer p {
+	text-align: right;
+	color: var(--color-dark);
 }
 
 form {
@@ -72,4 +98,105 @@ form input[type='submit'] {
 	padding: 4px 8px;
 	border-radius: 6px;
 	color: #fff;
+}
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+section {
+	padding: 1rem;
+}
+
+p {
+	margin-bottom: 0;
+}
+section.hero p {
+	text-align: center;
+}
+
+.about .hero {
+	background: center center url(img/hero.jpg) no-repeat;
+	background-size: cover;
+}
+.about .hero p {
+	text-align: center;
+}
+a.button {
+	text-decoration: none;
+	background: var(--color-brand);
+	color: #fff;
+	outline: none;
+	border: 2px solid #fff;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	font-family: outfit;
+	font-weight: 700;
+}
+
+.cards {
+	align-self: stretch;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(calc((100% - 3rem) / 4), 1fr));
+	gap: 1rem;
+}
+
+@media (max-width: 500px) {
+	.cards {
+		display: flex;
+		flex-direction: column;
+	}
+}
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--color-dark);
+	border: 4px solid var(--color-brand);
+	border-radius: 12px;
+	color: var(--color-light);
+}
+.cards h2 {
+	color: var(--color-dark);
+}
+
+.card h3 {
+	text-align: center;
+	padding: 0 0.5rem;
+	flex: 1;
+}
+.card p {
+	text-align: center;
+	padding: 0 0.5rem;
+}
+.card img {
+	max-width: 100%;
+	height: auto;
+}
+
+.card .button {
+	margin: 1rem 0;
+}
+
+.bglight2 {
+	background-color: var(--color-light2);
+}
+
+.about .hero p {
+	background-color: color-mix(in srgb, var(--color-brand) 80%, transparent);
+	padding: 1rem;
+	border-radius: 1rem;
+	color: #fff;
+	font-size: 1.5rem;
+}
+
+.about .hero h1 {
+	color: var(--color-dark);
+}
+
+hr {
+	margin-top: 1rem;
+	outline: #222435;
+	width: 100%;
 }

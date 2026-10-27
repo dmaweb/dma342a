@@ -15,41 +15,55 @@
 
 		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body>
+	<body class="news">
 		<header>
-			<img src="img/logo.png" class="logo" alt="Scoops and Smiles Ice Cream Parlour logo" />
+			<a href="index.html"
+				><img src="img/logo.svg" class="logo" alt="Scoops and Smiles Ice Cream Parlour logo"
+			/></a>
+			<nav>
+				<a href="about.html">About</a>
+				<a href="gallery.html">Gallery</a>
+				<a href="news.html">News</a>
+				<a href="contact.html" class="current">Contact</a>
+				<a href="shop.html">Shop</a>
+			</nav>
 		</header>
 
 		<main>
-			<h1>Scoops and Smiles Ice Cream Parlour</h1>
-			<p>
-				Lorem ipsum dolor sit amet consectetur. Arcu adipiscing ut auctor tellus sagittis vitae
-				lobortis neque. Et ornare tellus ipsum purus nulla. Venenatis accumsan orci rhoncus erat id
-				arcu lectus. Tempor sed quam nunc malesuada iaculis augue blandit commodo.
-			</p>
-			<form action="#">
-				<div>
-					<label for="first_name">First Name</label>
-					<input type="text" name="first_name" id="first_name" placeholder="First Name" />
-				</div>
-				<div>
-					<label for="last_name">Last Name</label>
-					<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
-				</div>
-				<div>
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email" placeholder="Email" />
-				</div>
-				<div>
-					<label for="comments">Comments</label>
-					<textarea name="comments" id="comments" placeholder="Comments"> </textarea>
-				</div>
-				<input type="submit" />
-			</form>
+			<section>
+				<h1>Contact Us</h1>
+				<h2>Scoops and Smiles Ice Cream Parlour</h2>
+				<p>2001 Main St. Buffalo, NY 14201</p>
+				<p>Tel: 1-716-555-5555</p>
+				<p>Email: ben@scoopsandsmiles.com</p>
+				<p>Hours of operation: M-F, 1pm-8pm | S/S 1pm-9pm</p>
+				<hr />
+				<h2>Send us a message!</h2>
+
+				<form action="#">
+					<div>
+						<label for="first_name">First Name</label>
+						<input type="text" name="first_name" id="first_name" placeholder="First Name" />
+					</div>
+					<div>
+						<label for="last_name">Last Name</label>
+						<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
+					</div>
+					<div>
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" placeholder="Email" />
+					</div>
+					<div>
+						<label for="comments">Comments</label>
+						<textarea name="comments" id="comments" placeholder="Comments"> </textarea>
+					</div>
+					<input type="submit" />
+				</form>
+			</section>
 		</main>
 
 		<footer>
-			<p>©2026 YOUR NAME HERE</p>
+			<p>©2026 Scoops and Smiles Inc. All rights reserved.</p>
 		</footer>
 	</body>
 </html>
