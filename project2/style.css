@@ -52,3 +52,24 @@ footer {
 	color: var(--color-light);
 	background-color: var(--color-dark);
 }
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+form div {
+	display: grid;
+	grid-template-columns: 150px 250px;
+}
+
+form input[type='submit'] {
+	width: 200px;
+	margin-left: 150px;
+	background: var(--color-brand);
+	border: none;
+	padding: 4px 8px;
+	border-radius: 6px;
+	color: #fff;
+}
