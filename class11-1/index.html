@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mouse events</title>
+	</head>
+	<body>
+		<button onclick="showAlert()">Click me for the secret message</button>
+		<form action="#" id="myForm">
+			<input type="text" placeholder="First Name" /> <input type="submit" onclick="submitForm()" />
+		</form>
+		<div class="box" style="height: 3000px; background: red">a really tall box</div>
+		<button onclick="backToTop()">Back to top</button>
+	</body>
+	<script>
+		// mouse events
+		function showAlert() {
+			alert('Button was clicked');
+		}
+		// keyboard events
+		document.addEventListener('keydown', function (event) {
+			alert('you pressed down on a key!');
+		});
+
+		// form events
+		function submitForm() {
+			alert('you submitted the form');
+		}
+		// window/page events
+		window.onresize = function () {
+			alert('you resized the window!');
+		};
+
+		function backToTop() {
+			window.scroll(0, 0);
+		}
+	</script>
+</html>
