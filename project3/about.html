@@ -63,30 +63,42 @@
 				<h2>Ice Cream 101</h2>
 				<div class="accordion">
 					<div class="accordion-item">
-						<h3>Question 1</h3>
+						<div class="question-title">
+							<img src="img/pointer.svg" alt="pointer" class="pointer" />
+							<h3>Where was Ice Cream invented?</h3>
+						</div>
 						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias consequuntur magni
-							iste repudiandae error placeat nobis hic, voluptate exercitationem, dicta
-							necessitatibus odio numquam, commodi soluta unde maxime. Beatae, officia quisquam.
+							The earliest evidence of anything approaching ice cream being made was in China in the
+							Tang period (A.D. 618-907).
 						</p>
 					</div>
+					<!-- .accordion-item -->
 					<div class="accordion-item">
-						<h3>Question 2</h3>
-						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias consequuntur magni
-							iste repudiandae error placeat nobis hic, voluptate exercitationem, dicta
-							necessitatibus odio numquam, commodi soluta unde maxime. Beatae, officia quisquam.
-						</p>
+						<div class="question-title">
+							<img src="img/pointer.svg" alt="pointer" class="pointer" />
+							<h3>How many scoops of ice cream can Shaq eat?</h3>
+						</div>
+						<p>A lot, I'm sure!</p>
 					</div>
+					<!-- .accordion-item -->
 					<div class="accordion-item">
-						<h3>Question 3</h3>
-						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias consequuntur magni
-							iste repudiandae error placeat nobis hic, voluptate exercitationem, dicta
-							necessitatibus odio numquam, commodi soluta unde maxime. Beatae, officia quisquam.
-						</p>
+						<div class="question-title">
+							<img src="img/pointer.svg" alt="pointer" class="pointer" />
+							<h3>What are the defining flavors of the popular Canadian flavor "Tiger Tail"?</h3>
+						</div>
+						<p>Orange and Licorice... yum?</p>
 					</div>
+					<!-- .accordion-item -->
+					<div class="accordion-item">
+						<div class="question-title">
+							<img src="img/pointer.svg" alt="pointer" class="pointer" />
+							<h3>How can you prevent "Brain Freeze"?</h3>
+						</div>
+						<p>Don't eat your ice cream too fast!</p>
+					</div>
+					<!-- .accordion-item -->
 				</div>
+				<!-- .acccordion -->
 			</section>
 		</main>
 
@@ -94,4 +106,18 @@
 			<p>©2026 Scoops and Smiles Inc. All rights reserved.</p>
 		</footer>
 	</body>
+	<script>
+		const questions = document.querySelectorAll('.accordion-item .question-title');
+		console.log(questions);
+		questions.forEach(function (question) {
+			question.addEventListener('click', revealAnswer);
+		});
+		function revealAnswer() {
+			const accordionItem = this.closest('.accordion-item');
+			const answer = accordionItem.querySelector('p');
+			const pointer = accordionItem.querySelector('img.pointer');
+			answer.classList.toggle('reveal');
+			pointer.classList.toggle('rotate-down');
+		}
+	</script>
 </html>
