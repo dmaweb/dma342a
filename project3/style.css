@@ -207,7 +207,6 @@ hr {
 	border-bottom: 1px solid var(--color-brand);
 	padding: 1rem 0;
 }
-
 .accordion-item .question-title {
 	display: flex;
 	justify-content: flex-start;
@@ -220,11 +219,9 @@ hr {
 	transform: rotate(0);
 	transition: all ease 0.3s;
 }
-
 .accordion-item .question-title {
 	cursor: pointer;
 }
-
 .accordion-item p {
 	margin: 0 0 0 24px;
 	height: 0;
@@ -241,4 +238,29 @@ hr {
 }
 .accordion-item img.pointer.rotate-down {
 	transform: rotate(90deg);
+}
+
+details {
+	border: 1px solid #aaaaaa;
+	border-radius: 4px;
+	padding: 0.5em 0.5em 0;
+}
+
+summary {
+	font-weight: bold;
+	margin: -0.5em -0.5em 0;
+	padding: 0.5em;
+}
+
+details[open] {
+	padding: 0.5em;
+}
+
+details[open] summary {
+	border-bottom: 1px solid #aaaaaa;
+	margin-bottom: 0.5em;
+}
+
+details:open > summary {
+	background-color: #ccccff;
 }
