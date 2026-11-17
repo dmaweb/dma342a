@@ -32,53 +32,151 @@
 		<main>
 			<section>
 				<h1>News</h1>
-				<div class="cards">
-					<div class="card">
-						<h3>New flavors announced!</h3>
-						<img src="img/flavors.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-					<div class="card">
-						<h3>Vote "No!" to banning ice cream!</h3>
-						<img src="img/announcement.jpg" alt="Photo of couple holding ice cream cones" />
-						<a href="article.html" class="button">Read More</a>
-					</div>
-				</div>
+				<search>
+					<form class="search_form">
+						<label for="site-search">Search the site:</label>
+						<input type="search" id="site-search" name="q" placeholder="Enter keywords..." />
+						<button type="submit">Search</button>
+					</form>
+				</search>
+
+				<p class="news-status">Loading articles...</p>
+				<div class="cards news-cards"></div>
+
+				<article class="news-article" hidden>
+					<button type="button" class="button back-button">Back to News</button>
+					<h2></h2>
+					<p class="article-byline"></p>
+					<time></time>
+					<img class="article-image" src="" alt="" />
+					<div class="article-content"></div>
+				</article>
 			</section>
 		</main>
 
 		<footer>
 			<p>©2026 Scoops and Smiles Inc. All rights reserved.</p>
 		</footer>
+		<script>
+			const articleFiles = [
+				'new-flavors-announced.json',
+				'vote-no-to-banning-ice-cream.json',
+				'banana-splits-improve-eyesight.json',
+				'local-foodies-chime-in.json',
+				'how-big-is-a-scoop.json',
+				'national-hat-day.json',
+			];
+
+			const cards = document.querySelector('.news-cards');
+			const status = document.querySelector('.news-status');
+			const search = document.querySelector('search');
+			const searchForm = document.querySelector('.search_form');
+			const searchInput = document.querySelector('#site-search');
+			const articleView = document.querySelector('.news-article');
+			const articles = [];
+
+			function formatDate(date) {
+				return new Intl.DateTimeFormat('en-US', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+					timeZone: 'UTC',
+				}).format(new Date(date));
+			}
+
+			function showArticle(article) {
+				articleView.querySelector('h2').textContent = article.title;
+				articleView.querySelector('.article-byline').textContent = `By ${article.author}`;
+
+				const time = articleView.querySelector('time');
+				time.dateTime = article.date;
+				time.textContent = `Posted on ${formatDate(article.date)}`;
+
+				const image = articleView.querySelector('.article-image');
+				image.src = article.featured_img;
+				image.alt = article.featured_img_alt;
+
+				articleView.querySelector('.article-content').innerHTML = article.content;
+				cards.hidden = true;
+				search.hidden = true;
+				status.hidden = true;
+				articleView.hidden = false;
+				articleView.scrollIntoView();
+			}
+
+			function renderCards(items) {
+				cards.replaceChildren();
+
+				items.forEach(function (article) {
+					const card = document.createElement('div');
+					card.className = 'card';
+
+					const title = document.createElement('h3');
+					title.textContent = article.title;
+
+					const image = document.createElement('img');
+					image.src = article.featured_img;
+					image.alt = article.featured_img_alt;
+
+					const link = document.createElement('a');
+					link.href = '#';
+					link.className = 'button';
+					link.textContent = 'Read More';
+					link.addEventListener('click', function (event) {
+						event.preventDefault();
+						showArticle(article);
+					});
+
+					card.append(title, image, link);
+					cards.append(card);
+				});
+
+				status.textContent = items.length ? '' : 'No articles match your search.';
+				status.hidden = items.length > 0;
+			}
+
+			Promise.all(
+				articleFiles.map(function (file) {
+					return fetch(`news/${file}`).then(function (response) {
+						if (!response.ok) {
+							throw new Error(`Could not load ${file}`);
+						}
+						return response.json();
+					});
+				}),
+			)
+				.then(function (results) {
+					articles.push(
+						...results.map(function (result) {
+							return result.article;
+						}),
+					);
+					renderCards(articles);
+				})
+				.catch(function (error) {
+					console.error(error);
+					status.textContent = 'Sorry, the news could not be loaded. Please try again later.';
+				});
+
+			searchForm.addEventListener('submit', function (event) {
+				event.preventDefault();
+				const query = searchInput.value.trim().toLowerCase();
+				renderCards(
+					articles.filter(function (article) {
+						return (
+							article.title.toLowerCase().includes(query) ||
+							article.content.toLowerCase().includes(query)
+						);
+					}),
+				);
+			});
+
+			articleView.querySelector('.back-button').addEventListener('click', function () {
+				articleView.hidden = true;
+				cards.hidden = false;
+				search.hidden = false;
+				renderCards(articles);
+			});
+		</script>
 	</body>
 </html>

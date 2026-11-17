@@ -268,6 +268,40 @@ details:open > summary {
 .card {
 	cursor: pointer;
 }
+
+.news-article {
+	width: min(800px, 100%);
+}
+
+.news-article[hidden],
+.news-cards[hidden],
+search[hidden],
+.news-status[hidden] {
+	display: none;
+}
+
+.news-article .back-button {
+	align-self: flex-start;
+	cursor: pointer;
+}
+
+.article-byline {
+	font-weight: bold;
+}
+
+.article-image {
+	width: 100%;
+	max-height: 450px;
+	margin-top: 1rem;
+	border-radius: 12px;
+	object-fit: cover;
+}
+
+.article-content {
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+
 /* lightbox */
 .lightbox {
 	display: none;
@@ -287,4 +321,10 @@ details:open > summary {
 	max-width: 90%;
 	max-height: 90%;
 	cursor: pointer;
+}
+
+/* search form */
+form.search_form {
+	flex-direction: row;
+	padding-bottom: 1rem;
 }
