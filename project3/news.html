@@ -34,8 +34,33 @@
 				<h1>News</h1>
 				<search>
 					<form class="search_form">
-						<label for="site-search">Search the site:</label>
-						<input type="search" id="site-search" name="q" placeholder="Enter keywords..." />
+						<fieldset>
+							<label for="site-search">Search news:</label>
+							<input type="search" id="site-search" name="q" placeholder="Search the archives..." />
+						</fieldset>
+						<fieldset>
+							<label for="site-search">Filter results:</label>
+							<select id="site-search-filter" name="f">
+								<option value="all">All News</option>
+								<option value="local_events">Local events</option>
+								<option value="new_flavors">New Flavors</option>
+								<option value="politics">Politics</option>
+							</select>
+						</fieldset>
+						<fieldset class="site-search-sort">
+							<label for="site-search">Sort results:</label>
+							<div class="sort_controls">
+								<select id="site-search-sort" name="s">
+									<option value="date">Date</option>
+									<option value="popular">Popularity</option>
+									<option value="author">Author</option>
+								</select>
+								<div class="sort_buttons">
+									<button><img src="img/arrow-down.svg" alt="" /></button>
+									<button><img src="img/arrow-up.svg" alt="" /></button>
+								</div>
+							</div>
+						</fieldset>
 						<button type="submit">Search</button>
 					</form>
 				</search>
@@ -143,13 +168,13 @@
 						}
 						return response.json();
 					});
-				}),
+				})
 			)
 				.then(function (results) {
 					articles.push(
 						...results.map(function (result) {
 							return result.article;
-						}),
+						})
 					);
 					renderCards(articles);
 				})
@@ -167,7 +192,7 @@
 							article.title.toLowerCase().includes(query) ||
 							article.content.toLowerCase().includes(query)
 						);
-					}),
+					})
 				);
 			});
 

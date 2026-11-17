@@ -1,7 +1,7 @@
 :root {
 	--color-dark: #222435;
-	--color-light: #f3eddb;
-	--color-light2: #efdede;
+	--color-light: #fcf7e9;
+	--color-light2: #fcf7e9;
 	--color-brand: #fd48d9;
 	--color-light-blue: #d0d3f1;
 	--grid-size: 16px;
@@ -80,13 +80,13 @@ footer p {
 	color: var(--color-dark);
 }
 
-form {
+.contact form {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
 }
 
-form div {
+.contact form div {
 	display: grid;
 	grid-template-columns: 150px 250px;
 }
@@ -325,6 +325,14 @@ search[hidden],
 
 /* search form */
 form.search_form {
-	flex-direction: row;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr auto;
 	padding-bottom: 1rem;
+}
+
+.site-search-sort {
+	/* display: flex; */
+}
+.sort_buttons {
+	display: flex;
 }
