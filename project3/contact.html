@@ -40,12 +40,12 @@
 				<hr />
 				<h2>Send us a message!</h2>
 
-				<form action="#" method="post" id="contact_form">
+				<form action="https://formspree.io/f/mwloawbk" method="post" id="contact_form">
 					<label for="first_name">First name</label>
-					<input type="text" name="first_name" id="first_name" autocomplete="given-name" required />
+					<input type="text" name="first_name" id="first_name" autocomplete="given-name" />
 
 					<label for="last_name">Last name</label>
-					<input type="text" name="last_name" id="last_name" autocomplete="family-name" required />
+					<input type="text" name="last_name" id="last_name" autocomplete="family-name" />
 
 					<label for="email">Email address</label>
 
@@ -61,8 +61,16 @@
 
 					<label for="comments">Message</label>
 					<textarea name="comments" id="comments" rows="6" required></textarea>
-
+					<label for="quiz">Prove you're human</label>
+					<input
+						type="text"
+						name="quiz"
+						id="quiz"
+						placeholder="What color is the a cloudless sky?"
+						required
+					/>
 					<button type="submit">Send message</button>
+					<input type="hidden" name="_subject" value="New Scoops and Smiles contact message" />
 				</form>
 			</section>
 		</main>
@@ -70,5 +78,23 @@
 		<footer>
 			<p>©2026 Scoops and Smiles Inc. All rights reserved.</p>
 		</footer>
+		<script>
+			const contactForm = document.getElementById('contact_form');
+			const quizAnswer = document.getElementById('quiz');
+			quizAnswer.addEventListener('input', function () {
+				quizAnswer.setCustomValidity('');
+			});
+
+			contactForm.addEventListener('submit', function (event) {
+				const answer = quizAnswer.value.trim().toLowerCase();
+
+				if (answer !== 'blue') {
+					event.preventDefault();
+					quizAnswer.setCustomValidity('Please enter the correct answer.');
+					quizAnswer.reportValidity();
+					quizAnswer.focus();
+				}
+			});
+		</script>
 	</body>
 </html>
