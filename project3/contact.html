@@ -15,7 +15,7 @@
 
 		<link rel="stylesheet" href="style.css" />
 	</head>
-	<body class="news">
+	<body class="contact">
 		<header>
 			<a href="index.html"
 				><img src="img/logo.svg" class="logo" alt="Scoops and Smiles Ice Cream Parlour logo"
@@ -40,20 +40,29 @@
 				<hr />
 				<h2>Send us a message!</h2>
 
-				<form action="#" id="contact_form">
-					<label for="first_name">First Name</label>
-					<input type="text" name="first_name" id="first_name" placeholder="First Name" />
+				<form action="#" method="post" id="contact_form">
+					<label for="first_name">First name</label>
+					<input type="text" name="first_name" id="first_name" autocomplete="given-name" required />
 
-					<label for="last_name">Last Name</label>
-					<input type="text" name="last_name" id="last_name" placeholder="Last Name" />
+					<label for="last_name">Last name</label>
+					<input type="text" name="last_name" id="last_name" autocomplete="family-name" required />
 
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email" placeholder="Email" />
+					<label for="email">Email address</label>
 
-					<label for="comments">Comments</label>
-					<textarea name="comments" id="comments" placeholder="Comments"> </textarea>
+					<input
+						type="email"
+						name="email"
+						id="email"
+						autocomplete="email"
+						aria-describedby="email_help"
+						required
+					/>
+					<p id="email_help">For example, name@example.com</p>
 
-					<input type="submit" />
+					<label for="comments">Message</label>
+					<textarea name="comments" id="comments" rows="6" required></textarea>
+
+					<button type="submit">Send message</button>
 				</form>
 			</section>
 		</main>
